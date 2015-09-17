@@ -1,0 +1,15 @@
+{
+  "name": "anthropocene-server",
+  "version": "1.0.0",
+  "description": "anthropocene - server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "django",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.3.6"
+  }
+}
