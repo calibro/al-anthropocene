@@ -30,8 +30,9 @@ app.get('/', function (req, res) {
 });
 
 //if screen view is rebooted, this should be its first cll to resync with tablet view
+//note: if we decide to use reset on startup, this can be avoided
 app.get('/currstatus', function (req, res) {
-    res.send({"view":currView, "tags":currTags});
+    res.send(JSON.stringify({"view":currView, "tags":currTags}));
 });
 
 
@@ -67,7 +68,4 @@ io.on('connection', function(socket){
         //sync tags with screen view
         io.emit('selectedVideos', data);
     })
-
-
-
 });
