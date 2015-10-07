@@ -318,7 +318,6 @@ Returns json data with the info of all videos
         },
         ...
       ]
-    }
   },
   ...
 ]
@@ -489,7 +488,6 @@ Returns metadata and chunks of a given playlist
             },
             ...
           ]
-        }
       },
       ....
   ]
