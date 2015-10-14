@@ -46,13 +46,21 @@ io.on('connection', function(socket){
 
     //this is called whenever a view gets connected (tablet or screen), to reset the other one (if online)
     //should this be separated in two reset (resetScreen & resetTablet) to avoid double init on startup?
-    io.emit('reset', msg);
+    //io.emit('reset', msg);
 
     //changeView event coming from tablet
     socket.on('changeView', function(msg){
         currView = msg;
+        console.log(currView);
         //guiView event emitted for screen view
         io.emit('guiView', msg);
+    });
+
+    socket.on('entities', function(msg){
+        currEntities = msg;
+        console.log(currEntities);
+        //guiView event emitted for screen view
+        io.emit('entities', currEntities);
     });
 
     //selected tag list sent from tablet whenever a tag is added or removed
