@@ -70,6 +70,13 @@ io.on('connection', function(socket){
         io.emit('playStatus', currStatus);
     });
 
+    socket.on('playlist', function(msg){
+        var currPlaylist = msg;
+        console.log(currPlaylist);
+        //guiView event emitted for screen view
+        io.emit('playlist', currPlaylist);
+    });
+
     socket.on('playChunk', function(msg){
         var currChunk = msg;
         console.log(currChunk);
