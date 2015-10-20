@@ -50,22 +50,36 @@ io.on('connection', function(socket){
 
     //changeView event coming from tablet
     socket.on('changeView', function(msg){
-        currView = msg;
+        var currView = msg;
         console.log(currView);
         //guiView event emitted for screen view
         io.emit('guiView', msg);
     });
 
     socket.on('entities', function(msg){
-        currEntities = msg;
+        var currEntities = msg;
         console.log(currEntities);
         //guiView event emitted for screen view
         io.emit('entities', currEntities);
     });
 
+    socket.on('playStatus', function(msg){
+        var currStatus = msg;
+        console.log(currStatus);
+        //guiView event emitted for screen view
+        io.emit('playStatus', currStatus);
+    });
+
+    socket.on('playChunk', function(msg){
+        var currChunk = msg;
+        console.log(currChunk);
+        //guiView event emitted for screen view
+        io.emit('playChunk', currChunk);
+    });
+
     //selected tag list sent from tablet whenever a tag is added or removed
     socket.on('changeTags',function(data){
-        currTags = data;
+        var currTags = data;
         //sync tags with screen view
         io.emit('selectedTags', data);
     })
