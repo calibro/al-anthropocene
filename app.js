@@ -81,7 +81,14 @@ io.on('connection', function(socket){
         var currChunk = msg;
         console.log(currChunk);
         //guiView event emitted for screen view
-        io.emit('playChunk', currChunk);
+        socket.broadcast.emit('playChunk', currChunk);
+    });
+
+    socket.on('playTime', function(msg){
+        var currTime = msg;
+        console.log(currTime);
+        //guiView event emitted for screen view
+        socket.broadcast.emit('playTime', currTime);
     });
 
     //selected tag list sent from tablet whenever a tag is added or removed
