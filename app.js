@@ -62,9 +62,17 @@ io.on('connection', function(socket){
         if("reload" in msg && (msg.reload=="false" || msg.reload==false)) {
           setTimeout(function(){
             io.emit('entities',currEntities);
-            console.log("blablabla",currEntities);
           },1200);
         }
+        else if("reload" in msg && (msg.reload=="true" || msg.reload==true)) {
+            setTimeout(function() {
+                io.emit('reset', {});
+            });
+        }
+    });
+
+    socket.on("reset",function(msg){
+       socket.broadcast.emit("resetCreate");
     });
 
     socket.on('entities', function(msg){
