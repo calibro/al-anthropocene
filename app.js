@@ -21,7 +21,8 @@ server.listen(3000);
 //tablet variables
 var currView = "start",
     currTags = [];
-
+var currEntities={},
+currTags = {};
 
 /***************
  * SUPPORT APIs
@@ -55,12 +56,19 @@ io.on('connection', function(socket){
     socket.on('changeView', function(msg){
         var currView = msg;
         console.log(currView);
+
         //guiView event emitted for screen view
         io.emit('guiView', msg);
+        if("reload" in msg && (msg.reload=="false" || msg.reload==false)) {
+          setTimeout(function(){
+            io.emit('entities',currEntities);
+            console.log("blablabla",currEntities);
+          },1200);
+        }
     });
 
     socket.on('entities', function(msg){
-        var currEntities = msg;
+        currEntities = msg;
         console.log(currEntities);
         //guiView event emitted for screen view
         io.emit('entities', currEntities);
@@ -96,7 +104,7 @@ io.on('connection', function(socket){
 
     //selected tag list sent from tablet whenever a tag is added or removed
     socket.on('changeTags',function(data){
-        var currTags = data;
+        currTags = data;
         //sync tags with screen view
         io.emit('selectedTags', data);
     })
