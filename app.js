@@ -8,8 +8,11 @@ var express = require('express'),
     app = express(),
     server = http.createServer(app),
     io = io.listen(server);
+    io.set('origins', '*:*');
 
 server.listen(3000);
+
+
 
 /******************
  * VIEWS VARIABLES
