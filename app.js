@@ -66,13 +66,13 @@ io.on('connection', function(socket){
         }
         else if("reload" in msg && (msg.reload=="true" || msg.reload==true)) {
             setTimeout(function() {
-                io.emit('reset', {});
+                io.emit('resetCreate', {});
             });
         }
     });
 
-    socket.on("reset",function(msg){
-       socket.broadcast.emit("resetCreate");
+    socket.on("backToCreate",function(msg){
+       socket.broadcast.emit("backToCreate");
     });
 
     socket.on('entities', function(msg){
