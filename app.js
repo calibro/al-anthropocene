@@ -55,7 +55,7 @@ io.on('connection', function(socket){
     //changeView event coming from tablet
     socket.on('changeView', function(msg){
         var currView = msg;
-        console.log(currView);
+        //console.log(currView);
 
         //guiView event emitted for screen view
         io.emit('guiView', msg);
@@ -77,14 +77,14 @@ io.on('connection', function(socket){
 
     socket.on('entities', function(msg){
         currEntities = msg;
-        console.log(currEntities);
+        //console.log(currEntities);
         //guiView event emitted for screen view
         io.emit('entities', currEntities);
     });
 
     socket.on('playStatus', function(msg){
         var currStatus = msg;
-        console.log(currStatus);
+        //console.log(currStatus);
         //guiView event emitted for screen view
         io.emit('playStatus', currStatus);
     });
@@ -98,21 +98,31 @@ io.on('connection', function(socket){
 
     socket.on('playChunk', function(msg){
         var currChunk = msg;
-        console.log(currChunk);
+        //console.log(currChunk);
         //guiView event emitted for screen view
         socket.broadcast.emit('playChunk', currChunk);
     });
 
     socket.on('playTime', function(msg){
         var currTime = msg;
-        console.log(currTime);
+        //console.log(currTime);
         //guiView event emitted for screen view
         socket.broadcast.emit('playTime', currTime);
     });
 
+    socket.on('reset', function(msg){
+        //console.log('reset!');
+        socket.broadcast.emit('reset')
+    });
+
+    socket.on('resetCreate', function(msg){
+        //console.log('reset!');
+        socket.broadcast.emit('resetCreate');
+    });
+
     //selected tag list sent from tablet whenever a tag is added or removed
     socket.on('changeTags',function(data){
-        currTags = data;
+        //currTags = data;
         //sync tags with screen view
         io.emit('selectedTags', data);
     })
